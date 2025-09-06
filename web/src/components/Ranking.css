@@ -1,22 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+.outer-panel {
+    background-image: url('https://i.imgur.com/8ynDUPR.jpeg');
+    background-size: cover; /* Garante que a imagem cubra a área sem distorcer */
+    background-position: center; /* Centraliza a imagem */
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
 
 .ranking-container {
-    background-image: url('https://i.imgur.com/8ynDUPR.jpeg');
-    background-color: #eaf2f8; 
-    background-size: cover;
-    background-position: center;
-    width: 375px; 
-    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.95); /* Painel quase opaco */
+    width: 375px;
     border-radius: 20px;
     padding: 30px 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Cinzel', serif;
     color: #083D56;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
     padding-bottom: 60px;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .header {
@@ -25,7 +36,6 @@
 }
 
 .header h1 {
-    font-family: 'Cinzel', serif;
     font-size: 28px;
     font-weight: 700;
     margin: 0;
@@ -33,70 +43,44 @@
 }
 
 .header h2 {
-    font-family: 'Cinzel', serif;
     font-size: 18px;
     font-weight: 400;
     margin: 5px 0 0;
     letter-spacing: 2px;
 }
 
-.top-three {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-.podium {
+.winner-podium {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.podium .crown-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 8px;
-}
-
-.keyhole {
-    width: 45px;
-    height: 65px;
-    background-color: #ccc; /* Cor do keyhole */
-    border-radius: 22.5px 22.5px 0 0;
+    margin-bottom: 40px;
     position: relative;
-    border: 3px solid white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.keyhole::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 15px;
-    height: 30px;
-    background-color: inherit; /* Mesma cor */
-    border-left: 3px solid white;
-    border-right: 3px solid white;
-    border-bottom: 3px solid white;
+.crown-icon-winner {
+    width: 50px;
+    height: 50px;
+    margin-bottom: -15px;
+    z-index: 2;
+    fill: #FFD700; /* Garante a cor dourada */
 }
 
-.podium-1 .keyhole { background-color: #FFD700; }
-.podium-2 .keyhole { background-color: #C0C0C0; }
-.podium-3 .keyhole { background-color: #CD7F32; }
+.keyhole-icon-winner {
+    width: 90px;
+    height: 90px;
+    fill: #083D56; /* Cor azul escura para o buraco da fechadura */
+    z-index: 1;
+}
 
-
-.mesa-tag-top {
+.mesa-tag-winner {
     background-color: #083D56;
     color: white;
-    padding: 6px 15px;
-    border-radius: 15px;
-    margin-top: 15px;
-    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 18px;
+    margin-top: 15px; /* Aumenta o espaçamento */
+    font-size: 16px;
     font-weight: bold;
+    z-index: 3;
 }
 
 .ranking-list {
@@ -112,6 +96,12 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
+}
+
+.mesa-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     font-size: 18px;
     font-weight: bold;
 }
@@ -119,6 +109,10 @@
 .keys {
     display: flex;
     align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap; /* Impede que o número quebre a linha */
+    padding-left: 15px; /* Espaço para não colar na barra de progresso */
 }
 
 .key-icon {
@@ -128,11 +122,26 @@
     fill: #FFC107;
 }
 
+.progress-bar-container {
+    width: 180px; /* Largura da barra de progresso */
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-top: 5px; /* Espaço entre o nome da mesa e a barra */
+    overflow: hidden; /* Garante que o preenchimento não saia das bordas */
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: #083D56; /* Cor azul escura para o preenchimento */
+    border-radius: 4px;
+    transition: width 0.5s ease-in-out; /* Animação suave */
+}
+
 .footer-logo {
     position: absolute;
     bottom: 20px;
     right: 25px;
-    font-family: 'Cinzel', serif;
     font-weight: bold;
     font-size: 24px;
     color: #083D56;

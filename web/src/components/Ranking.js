@@ -1,74 +1,74 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // LINHA CORRIGIDA
 import './Ranking.css';
 
-// Importando os SVGs como componentes React
 import { ReactComponent as CrownGold } from '../assets/crown-gold.svg';
-import { ReactComponent as CrownSilver } from '../assets/crown-silver.svg';
-import { ReactComponent as CrownBronze } from '../assets/crown-bronze.svg';
 import { ReactComponent as KeyIcon } from '../assets/key.svg';
+import { ReactComponent as KeyholeIcon } from '../assets/keyhole-icon.svg';
 
 const Ranking = () => {
     const [mesas, setMesas] = useState([]);
+    const totalKeys = 1000; // Defina aqui o número total de chaves para o cálculo da porcentagem
 
-    // Simulação de chamada ao backend
     useEffect(() => {
-        // No mundo real, você faria uma chamada fetch() ou usaria axios aqui
-        // Ex: fetch('/api/mesas').then(res => res.json()).then(data => setMesas(data));
+        // Mock data - será substituído pela integração com o banco de dados
         const mockData = [
-            { id: 1, nome: 'MESA 11', chaves: 25 },
-            { id: 2, nome: 'MESA 05', chaves: 42 },
-            { id: 3, nome: 'MESA 08', chaves: 18 },
-            { id: 4, nome: 'MESA 02', chaves: 33 },
-            { id: 5, nome: 'MESA 15', chaves: 10 },
-            { id: 6, nome: 'MESA 01', chaves: 0 },
-            { id: 7, nome: 'MESA 03', chaves: 5 },
+            { id: 1, nome: 'MESA 05', chaves: 420 },
+            { id: 2, nome: 'MESA 02', chaves: 330 },
+            { id: 3, nome: 'MESA 11', chaves: 250 },
+            { id: 4, nome: 'MESA 08', chaves: 180 },
+            { id: 5, nome: 'MESA 15', chaves: 100 },
+            { id: 6, nome: 'MESA 03', chaves: 50 },
+            { id: 7, nome: 'MESA 01', chaves: 0 },
         ];
 
-        // Ordenando os dados para o ranking
         const sortedData = mockData.sort((a, b) => b.chaves - a.chaves);
         setMesas(sortedData);
     }, []);
 
-    const topThree = mesas.slice(0, 3);
-    const otherMesas = mesas.slice(3);
-
-    const getCrown = (index) => {
-        if (index === 0) return <CrownGold className="crown-icon" />;
-        if (index === 1) return <CrownSilver className="crown-icon" />;
-        if (index === 2) return <CrownBronze className="crown-icon" />;
-        return null;
-    };
+    const winnerMesa = mesas[0];
+    const otherMesas = mesas.slice(1);
 
     return (
-        <div className="ranking-container">
-            <div className="header">
-                <h1>GRAVATA DOS NOIVOS</h1>
-                <h2>RANKING</h2>
-            </div>
+        <div className="outer-panel">
+            <div className="ranking-container">
+                <div className="header">
+                    <h1>GRAVATA DOS NOIVOS</h1>
+                    <h2>RANKING</h2>
+                </div>
 
-            <div className="top-three">
-                {topThree.map((mesa, index) => (
-                    <div key={mesa.id} className={`podium podium-${index + 1}`}>
-                        {getCrown(index)}
-                        <div className="keyhole"></div>
-                        <div className="mesa-tag-top">{mesa.nome}</div>
+                {winnerMesa && (
+                    <div className="winner-podium">
+                        <CrownGold className="crown-icon-winner" />
+                        <KeyholeIcon className="keyhole-icon-winner" />
+                        <div className="mesa-tag-winner">{winnerMesa.nome}</div>
                     </div>
-                ))}
-            </div>
+                )}
 
-            <div className="ranking-list">
-                {otherMesas.map((mesa) => (
-                    <div key={mesa.id} className="mesa-row">
-                        <span>{mesa.nome}</span>
-                        <div className="keys">
-                            <KeyIcon className="key-icon" />
-                            <span>{mesa.chaves}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <div className="footer-logo">
-                <span>JB</span>
+                <div className="ranking-list">
+                    {otherMesas.map((mesa) => {
+                        const percentage = totalKeys > 0 ? (mesa.chaves / totalKeys) * 100 : 0;
+                        return (
+                            <div key={mesa.id} className="mesa-row">
+                                <div className="mesa-info">
+                                    <span>{mesa.nome}</span>
+                                    <div className="progress-bar-container">
+                                        <div 
+                                            className="progress-bar-fill"
+                                            style={{ width: `${percentage}%` }}
+                                        ></div>
+                                    </div>
+                                </div>
+                                <div className="keys">
+                                    <KeyIcon className="key-icon" />
+                                    <span>{mesa.chaves}</span>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+                <div className="footer-logo">
+                    <span>JB</span>
+                </div>
             </div>
         </div>
     );
