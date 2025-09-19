@@ -5,9 +5,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  position: relative;
+}
 
-  background-color: #ffffff; 
-  
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+
+  background-image: url('https://i.imgur.com/8ynDUPR.jpeg');
+  background-size: cover;
+  background-position: center;
+
+  filter: blur(8px);
+  transform: scale(1.05);
+}
+
+.App {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,9 +36,8 @@ body {
 }
 
 @media (max-width: 600px) {
-  body {
+  .App {
     padding: 0;
     align-items: flex-start;
-    background-color: #ffffff;
   }
 }
