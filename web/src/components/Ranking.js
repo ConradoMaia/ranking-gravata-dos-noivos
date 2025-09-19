@@ -25,7 +25,7 @@ const Ranking = () => {
     const winnerMesa = mesas[0];
     const otherMesas = mesas.slice(1);
 
-    const urlLogoJB = "https://i.imgur.com/0Qq9X3O.png";
+    const urlLogoJB = "https://i.imgur.com/H0lljWw.png";
     const urlFechadura = "https://i.imgur.com/roNFBG5.png";
     const urlChave = "https://i.imgur.com/UlRQH5U.png";
 
