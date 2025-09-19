@@ -23,7 +23,6 @@ const Ranking = () => {
     }, []);
 
     const winnerMesa = mesas[0];
-    const otherMesas = mesas.slice(1);
 
     const urlLogoJB = "https://i.imgur.com/H0lljWw.png";
     const urlFechadura = "https://i.imgur.com/roNFBG5.png";
@@ -46,7 +45,7 @@ const Ranking = () => {
                 )}
 
                 <div className="ranking-list">
-                    {otherMesas.map((mesa) => {
+                    {mesas.map((mesa) => {
                         const percentage = totalKeys > 0 ? (mesa.chaves / totalKeys) * 100 : 0;
                         return (
                             <div key={mesa.id} className="mesa-row">
