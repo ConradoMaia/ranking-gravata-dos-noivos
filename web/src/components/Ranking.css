@@ -5,12 +5,25 @@
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
-    border-radius: 20px;
-    padding: 100px 100px 50px;
+    padding: 40px;
+    width: 550px;
     width: 800px;
     max-width: 100%;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
+}
+
+.outer-panel::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-image: url('https://i.imgur.com/8ynDUPR.jpeg');
+    background-size: cover;
+    filter: blur(15px);
+    z-index: 1;
 }
 
 .ranking-container {
@@ -23,6 +36,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    z-index: 2;
     padding-bottom: 70px;
     box-sizing: border-box;
 }
@@ -57,16 +71,24 @@
 .winner-image {
     width: 150px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    z-index: 2;
 }
 
 .mesa-tag-winner {
-    background-color: #083D56;
-    color: white;
-    padding: 8px 20px;
-    border-radius: 18px;
+    background: linear-gradient(145deg, #fceabb, #f8b500);
+    color: #4B3621;
+    padding: 12px 35px;
     font-size: 16px;
     font-weight: bold;
+    border-radius: 0 0 15px 15px;
+    margin-top: -8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    border: 2px solid #FFFFFF;
+    border-top: none; 
+    min-width: 150px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .ranking-list {
