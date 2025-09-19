@@ -2,30 +2,31 @@
 
 .outer-panel {
     background-image: url('https://i.imgur.com/8ynDUPR.jpeg');
-    background-size: cover; /* Garante que a imagem cubra a área sem distorcer */
-    background-position: center; /* Centraliza a imagem */
-    padding: 20px;
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding: 10vh 20px;
+    width: 100%;
     min-height: 100vh;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
+    align-items: flex-start;
 }
 
 .ranking-container {
-    background-color: rgba(255, 255, 255, 0.95); /* Painel quase opaco */
-    width: 375px;
+    background-color: rgba(255, 255, 255, 0.85);
+    width: 390px;
     border-radius: 20px;
-    padding: 30px 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     font-family: 'Cinzel', serif;
     color: #083D56;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding-bottom: 60px;
+    padding-bottom: 70px;
     box-sizing: border-box;
     max-width: 100%;
 }
@@ -57,19 +58,10 @@
     position: relative;
 }
 
-.crown-icon-winner {
-    width: 50px;
-    height: 50px;
-    margin-bottom: -15px;
-    z-index: 2;
-    fill: #FFD700; /* Garante a cor dourada */
-}
-
-.keyhole-icon-winner {
-    width: 90px;
-    height: 90px;
-    fill: #083D56; /* Cor azul escura para o buraco da fechadura */
-    z-index: 1;
+.winner-image {
+    width: 120px;
+    height: auto;
+    margin-bottom: 15px;
 }
 
 .mesa-tag-winner {
@@ -77,10 +69,8 @@
     color: white;
     padding: 8px 20px;
     border-radius: 18px;
-    margin-top: 15px; /* Aumenta o espaçamento */
     font-size: 16px;
     font-weight: bold;
-    z-index: 3;
 }
 
 .ranking-list {
@@ -88,20 +78,32 @@
 }
 
 .mesa-row {
-    background-color: white;
     border: 2px solid #083D56;
     border-radius: 30px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #a7d1e4;
+    z-index: 1;
+    transition: width 0.5s ease-in-out;
+    border-radius: 30px;
+}
+
+.mesa-content {
+    position: relative;
+    z-index: 2;
     padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
-}
-
-.mesa-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     font-size: 18px;
     font-weight: bold;
 }
@@ -109,36 +111,48 @@
 .keys {
     display: flex;
     align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-    white-space: nowrap; /* Impede que o número quebre a linha */
-    padding-left: 15px; /* Espaço para não colar na barra de progresso */
+    white-space: nowrap;
 }
 
-.key-icon {
+.key-image-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.fallback-icon {
+    display: none;
+}
+img + .fallback-icon {
+    display: flex;
+}
+img:not([src="URL_DIRETO_DA_IMAGEM_LOGO.PNG"]):not([src=""]):not([src="URL_DIRETO_DA_IMAGEM_FECHADURA.PNG"]):not([src="URL_DIRETO_DA_IMAGEM_CHAVE.PNG"]) + .fallback-icon {
+    display: none;
+}
+
+.keyhole-icon-winner.fallback-icon {
+    width: 90px;
+    height: 90px;
+    fill: #083D56;
+    margin-bottom: 15px;
+}
+
+.key-icon.fallback-icon {
     width: 24px;
     height: 24px;
     margin-right: 10px;
     fill: #FFC107;
 }
 
-.progress-bar-container {
-    width: 180px; /* Largura da barra de progresso */
-    height: 8px;
-    background-color: #e0e0e0;
-    border-radius: 4px;
-    margin-top: 5px; /* Espaço entre o nome da mesa e a barra */
-    overflow: hidden; /* Garante que o preenchimento não saia das bordas */
-}
-
-.progress-bar-fill {
-    height: 100%;
-    background-color: #083D56; /* Cor azul escura para o preenchimento */
-    border-radius: 4px;
-    transition: width 0.5s ease-in-out; /* Animação suave */
-}
-
 .footer-logo {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    width: 50px;
+    height: auto;
+}
+
+.footer-logo-fallback.fallback-icon {
     position: absolute;
     bottom: 20px;
     right: 25px;
@@ -149,7 +163,6 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);

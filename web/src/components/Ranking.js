@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react'; // LINHA CORRIGIDA
+import React, { useState, useEffect } from 'react';
 import './Ranking.css';
 
-import { ReactComponent as CrownGold } from '../assets/crown-gold.svg';
 import { ReactComponent as KeyIcon } from '../assets/key.svg';
 import { ReactComponent as KeyholeIcon } from '../assets/keyhole-icon.svg';
 
 const Ranking = () => {
     const [mesas, setMesas] = useState([]);
-    const totalKeys = 1000; // Defina aqui o número total de chaves para o cálculo da porcentagem
+    const totalKeys = 1000;
 
     useEffect(() => {
-        // Mock data - será substituído pela integração com o banco de dados
         const mockData = [
             { id: 1, nome: 'MESA 05', chaves: 420 },
             { id: 2, nome: 'MESA 02', chaves: 330 },
@@ -18,15 +16,18 @@ const Ranking = () => {
             { id: 4, nome: 'MESA 08', chaves: 180 },
             { id: 5, nome: 'MESA 15', chaves: 100 },
             { id: 6, nome: 'MESA 03', chaves: 50 },
-            { id: 7, nome: 'MESA 01', chaves: 0 },
+            { id: 7, nome: 'MESA 01', chaves: 20 },
         ];
-
         const sortedData = mockData.sort((a, b) => b.chaves - a.chaves);
         setMesas(sortedData);
     }, []);
 
     const winnerMesa = mesas[0];
     const otherMesas = mesas.slice(1);
+
+    const urlLogoJB = "https://i.imgur.com/0Qq9X3O.png";
+    const urlFechadura = "https://i.imgur.com/sbATIW7.png";
+    const urlChave = "https://i.imgur.com/LTSLs9W.png";
 
     return (
         <div className="outer-panel">
@@ -38,8 +39,8 @@ const Ranking = () => {
 
                 {winnerMesa && (
                     <div className="winner-podium">
-                        <CrownGold className="crown-icon-winner" />
-                        <KeyholeIcon className="keyhole-icon-winner" />
+                        <img src={urlFechadura} alt="Fechadura Vencedor" className="winner-image" onError={(e) => e.target.style.display='none'} />
+                        <KeyholeIcon className="keyhole-icon-winner fallback-icon" />
                         <div className="mesa-tag-winner">{winnerMesa.nome}</div>
                     </div>
                 )}
@@ -49,26 +50,23 @@ const Ranking = () => {
                         const percentage = totalKeys > 0 ? (mesa.chaves / totalKeys) * 100 : 0;
                         return (
                             <div key={mesa.id} className="mesa-row">
-                                <div className="mesa-info">
+                                <div className="progress-fill" style={{ width: `${percentage}%` }}></div>
+                                <div className="mesa-content">
                                     <span>{mesa.nome}</span>
-                                    <div className="progress-bar-container">
-                                        <div 
-                                            className="progress-bar-fill"
-                                            style={{ width: `${percentage}%` }}
-                                        ></div>
+                                    <div className="keys">
+                                        <img src={urlChave} alt="Ícone Chave" className="key-image-icon" onError={(e) => e.target.style.display='none'} />
+                                        <KeyIcon className="key-icon fallback-icon" />
+                                        <span>{mesa.chaves}</span>
                                     </div>
-                                </div>
-                                <div className="keys">
-                                    <KeyIcon className="key-icon" />
-                                    <span>{mesa.chaves}</span>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
-                <div className="footer-logo">
-                    <span>JB</span>
-                </div>
+                
+                <img src={urlLogoJB} alt="Logo JB" className="footer-logo" onError={(e) => e.target.style.display='none'} />
+                <div className="footer-logo-fallback fallback-icon">JB</div>
+
             </div>
         </div>
     );
