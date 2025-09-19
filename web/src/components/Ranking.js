@@ -26,8 +26,8 @@ const Ranking = () => {
     const otherMesas = mesas.slice(1);
 
     const urlLogoJB = "https://i.imgur.com/0Qq9X3O.png";
-    const urlFechadura = "https://i.imgur.com/sbATIW7.png";
-    const urlChave = "https://i.imgur.com/LTSLs9W.png";
+    const urlFechadura = "https://i.imgur.com/roNFBG5.png";
+    const urlChave = "https://i.imgur.com/UlRQH5U.png";
 
     return (
         <div className="outer-panel">

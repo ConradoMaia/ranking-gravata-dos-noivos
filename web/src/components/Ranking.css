@@ -2,24 +2,21 @@
 
 .outer-panel {
     background-image: url('https://i.imgur.com/8ynDUPR.jpeg');
-    background-size: 100% auto;
+    background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
-    padding: 10vh 20px;
-    width: 100%;
-    min-height: 100vh;
+    border-radius: 20px;
+    padding: 20px;
+    width: 450px;
+    max-width: 100%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
 }
 
 .ranking-container {
     background-color: rgba(255, 255, 255, 0.85);
-    width: 390px;
     border-radius: 20px;
     padding: 30px 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     font-family: 'Cinzel', serif;
     color: #083D56;
     display: flex;
@@ -28,7 +25,6 @@
     position: relative;
     padding-bottom: 70px;
     box-sizing: border-box;
-    max-width: 100%;
 }
 
 .header {
@@ -59,9 +55,9 @@
 }
 
 .winner-image {
-    width: 120px;
+    width: 150px;
     height: auto;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .mesa-tag-winner {
@@ -115,8 +111,8 @@
 }
 
 .key-image-icon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     margin-right: 10px;
 }
 
@@ -131,15 +127,15 @@ img:not([src="URL_DIRETO_DA_IMAGEM_LOGO.PNG"]):not([src=""]):not([src="URL_DIRET
 }
 
 .keyhole-icon-winner.fallback-icon {
-    width: 90px;
-    height: 90px;
+    width: 150px;
+    height: auto;
     fill: #083D56;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .key-icon.fallback-icon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     margin-right: 10px;
     fill: #FFC107;
 }
