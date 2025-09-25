@@ -9,17 +9,27 @@ const Ranking = () => {
     const totalKeys = 1000;
 
     useEffect(() => {
-        const mockData = [
-            { id: 1, nome: 'MESA 05', chaves: 420 },
-            { id: 2, nome: 'MESA 02', chaves: 330 },
-            { id: 3, nome: 'MESA 11', chaves: 250 },
-            { id: 4, nome: 'MESA 08', chaves: 180 },
-            { id: 5, nome: 'MESA 15', chaves: 100 },
-            { id: 6, nome: 'MESA 03', chaves: 50 },
-            { id: 7, nome: 'MESA 01', chaves: 20 },
-        ];
-        const sortedData = mockData.sort((a, b) => b.chaves - a.chaves);
-        setMesas(sortedData);
+        const backendUrl = 'http://localhost:3001/ranking'; 
+
+        const fetchRankingData = async () => {
+            try {
+                const response = await fetch(backendUrl);
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`);
+                }
+                const data = await response.json();
+                setMesas(data);
+            } catch (error) {
+                console.error("Houve um problema ao buscar os dados do ranking:", error);
+            }
+        };
+
+        fetchRankingData();
+
+        const intervalId = setInterval(fetchRankingData, 10000);
+
+        return () => clearInterval(intervalId);
+
     }, []);
 
     const winnerMesa = mesas[0];

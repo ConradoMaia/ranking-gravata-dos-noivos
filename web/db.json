@@ -1,0 +1,39 @@
+{
+  "ranking": [
+    {
+      "id": 5,
+      "nome": "MESA 05",
+      "chaves": 500
+    },
+    {
+      "id": 2,
+      "nome": "MESA 02",
+      "chaves": 332
+    },
+    {
+      "id": 11,
+      "nome": "MESA 11",
+      "chaves": 250
+    },
+    {
+      "id": 8,
+      "nome": "MESA 08",
+      "chaves": 180
+    },
+    {
+      "id": 15,
+      "nome": "MESA 15",
+      "chaves": 100
+    },
+    {
+      "id": 3,
+      "nome": "MESA 03",
+      "chaves": 50
+    },
+    {
+      "id": 1,
+      "nome": "MESA 01",
+      "chaves": 20
+    }
+  ]
+}
